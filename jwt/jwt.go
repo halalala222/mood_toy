@@ -12,11 +12,12 @@ import (
 )
 
 //GenToken 定义一个生成token的函数
-func GenToken(username string)(string,error)  {
+//通过用户传入的userid来判断是否是该用户
+func GenToken(userid string)(string,error)  {
 	c := models.Myclaims{
-		Username: username,
+		UserID: userid,
 		StandardClaims: jwt.StandardClaims{
-			Issuer :"lifiverings",
+			Issuer :"moodtoy",
 		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256,c)
@@ -25,8 +26,8 @@ func GenToken(username string)(string,error)  {
 
 //ParseToken 定义一个解析token的方法
 func ParseToken(tokenString string) (*models.Myclaims,error) {
-	token,err := jwt.ParseWithClaims(tokenString,&models.Myclaims{}, func(token *jwt.Token) (interface{}, error) {
-		return []string{setting.Configone.Jwt.Secret},nil
+	token,err := jwt.ParseWithClaims(tokenString,&models.Myclaims{}, func(token *jwt.Token) (i interface{},err error) {
+		return []byte(setting.Configone.Jwt.Secret),nil
 	})
 	if err != err {
 		return nil,err
@@ -68,7 +69,7 @@ func authHandler(c *gin.Context)  {
 	}
 }
 
-//JWTAuthMiddleware 定义一个中间件用来判断前端传来的token格式是否正确以及前端的token是否是对俄
+//JWTAuthMiddleware 定义一个中间件用来判断前端传来的token格式是否正确以及前端的token是否是对
 func JWTAuthMiddleware() func(c *gin.Context) {
 	return func(c *gin.Context) {
 		//这个是获取请求头中的内容
@@ -92,12 +93,13 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 		mc,err := ParseToken(parts[1])
 		if err != nil {
 			c.JSON(http.StatusOK,gin.H{
-				"message" : "无效的token",
+				"message" : err,
 
 			})
+			c.Abort()
 			return
 		}
-		c.Set("username",mc.Username)
+		c.Set("user_id",mc.UserID)
 		c.Next()
 	}
 }

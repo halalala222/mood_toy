@@ -6,21 +6,28 @@ import (
 	"log"
 )
 
+//总的一个配置的结构体
 type config struct {
 	Mysql Mysql
 	Jwt Jwt
 }
+//Configone 声明一个总结构体的变量
 var Configone = config{}
 
+//Mysql 一个mysql对应的结构体
 type Mysql struct {
 	Username  string `yaml:"username"`
 	Host string `yaml:"host"`
 	Port string `yaml:"port"`
 	Password string `yaml:"password"`
 }
+
+//Jwt 一个对应配置文件的结构体
 type Jwt struct {
 	Secret string `yaml:"mysecret"`
 }
+
+//InitSetting 对配置文件进行读写的一个函数
 func InitSetting(con *config)  {
 	yamlFile, err := ioutil.ReadFile("./config/config.yaml")
 	if err != nil {
