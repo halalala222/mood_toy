@@ -3,9 +3,12 @@ module lwh.com
 go 1.17
 
 require (
+	github.com/aliyun/alibaba-cloud-sdk-go v1.61.1379
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.7.7
+	github.com/tidwall/gjson v1.12.1
 	golang.org/x/crypto v0.0.0-20211202192323-5770296d904e
+	gopkg.in/yaml.v2 v2.4.0
 	gorm.io/driver/mysql v1.2.1
 	gorm.io/gorm v1.22.4
 )
@@ -19,12 +22,15 @@ require (
 	github.com/golang/protobuf v1.3.3 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.3 // indirect
+	github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af // indirect
 	github.com/json-iterator/go v1.1.9 // indirect
 	github.com/leodido/go-urn v1.2.0 // indirect
 	github.com/mattn/go-isatty v0.0.12 // indirect
-	github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421 // indirect
-	github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742 // indirect
+	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
+	github.com/modern-go/reflect2 v1.0.1 // indirect
+	github.com/tidwall/match v1.1.1 // indirect
+	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/ugorji/go/codec v1.1.7 // indirect
 	golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gopkg.in/ini.v1 v1.62.0 // indirect
 )

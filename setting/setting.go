@@ -10,6 +10,7 @@ import (
 type config struct {
 	Mysql Mysql
 	Jwt Jwt
+	XXG XXG
 }
 //Configone 声明一个总结构体的变量
 var Configone = config{}
@@ -27,6 +28,10 @@ type Jwt struct {
 	Secret string `yaml:"mysecret"`
 }
 
+type XXG struct {
+	AccessKeyID string `yaml:"access_key_id"`
+	AccessKeySecret string `yaml:"access_key_secret"`
+}
 //InitSetting 对配置文件进行读写的一个函数
 func InitSetting(con *config)  {
 	yamlFile, err := ioutil.ReadFile("./config/config.yaml")
