@@ -45,8 +45,8 @@ func GetAllmoodtoy(c *gin.Context)  {
 		"clothes" : clohes,
 		"eyes" : eyes,
 		"eyebrow" : eyebrows,
-		"hairs" : hairs,
-		"mouthe" : mouthes,
+		"hair" : hairs,
+		"mouth" : mouthes,
 	})
 }
 //PostMoodToy 对于这个的实现moodtoy部件的上传
@@ -84,7 +84,7 @@ func PostMoodToy(c *gin.Context)  {
 			"init" : "/初始.png",
 			"clohes" : moodtoy.Clothes,
 			"eyes" : moodtoy.Eyes,
-			"hairs" :moodtoy.Hair,
+			"hair" :moodtoy.Hair,
 			"eyebrow" : moodtoy.Eyebrow,
 			"mouth" : moodtoy.Mouth,
 		})
@@ -123,7 +123,7 @@ func GetMoodtoy(c *gin.Context)  {
 		"init" : "/初始.png",
 		"clohes" : moodtoy.Clothes,
 		"eyes" : moodtoy.Eyes,
-		"hairs" :moodtoy.Hair,
+		"hair" :moodtoy.Hair,
 		"eyebrow" : moodtoy.Eyebrow,
 		"mouth" : moodtoy.Mouth,
 	})

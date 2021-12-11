@@ -27,6 +27,7 @@ func PostDiary(c *gin.Context)  {
 		database.Db.Model(&models.User{}).Where("user_id",userid).Updates(&user)
 		database.Db.Model(&models.Diary{}).Where(diary).FirstOrCreate(&diary)
 		c.JSON(http.StatusOK,gin.H{
+			"title" : diary.Title,
 			"time" : diary.Time,
 			"text_content" : diary.TextContext,
 			"feeling" : diary.Feeling,
@@ -60,4 +61,5 @@ func GetDiary(c *gin.Context)  {
 		"textcontent" : txt,
 	})
 }
+
 

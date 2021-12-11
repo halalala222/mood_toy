@@ -48,8 +48,6 @@ func Login(c *gin.Context)  {
 //Register 定义一个注册的api，对于用户注册需要判断用户的
 func Register(c *gin.Context)  {
 	var user = models.User{}
-	var password string
-	//要对于用户输入的是空进行一个判断
 	if err :=c.ShouldBind(&user);err == nil{
 		//对用户传过来的密码进行一个加密
 		hash, err1 := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
@@ -59,17 +57,20 @@ func Register(c *gin.Context)  {
 		encodePW := string(hash)
 		//把加密过后的东西赋值给password然后存入数据库中
 		user.Password = encodePW
-		password = user.Password
 		//查找表中userid这一列
-		database.Db.Model(&user).Where("user_id=?",user.ID).FirstOrCreate(&user)
-		if user.Password != password {
-			password = user.Password
-			c.JSON(http.StatusBadGateway,gin.H{
-				"messaege" : "已注册",
-			})
+		database.Db.Where("user_id=?",user.UserID).Find(&models.Users)
+		//遍历切片中的结构体，如果中有用户名相同的话，那么就返回一个message该用户ID已经被注册
+		for _,user1 := range models.Users{
+			if user.UserID == user1.UserID {
+				c.JSON(http.StatusBadRequest,gin.H{
+					"message" : "该用户ID已经被注册",
+				})
+				return
+			}
 		}
+		database.Db.Model(&models.User{}).Where("user_id=?",user.UserID).Create(&user)
 	} else{
-		c.JSON(http.StatusBadRequest,gin.H{
+		c.JSON(http.StatusOK,gin.H{
 			"message" : err.Error(),
 		})
 	}

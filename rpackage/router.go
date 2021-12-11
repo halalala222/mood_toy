@@ -16,11 +16,14 @@ func Newrouter() *gin.Engine {
 		ruser.DELETE("/user", middleware.JWTAuthMiddleware(), apis.DeleteUser)
 		ruser.PUT("/user", middleware.JWTAuthMiddleware(), apis.UpdateUser)
 	}
-	rmood := baseRoute.Group("/moodtoy",middleware.JWTAuthMiddleware())
+	rmood := baseRoute.Group("/moodtoy")
 	{
 		rmood.POST("", apis.PostMoodToy)
 		rmood.GET("/all", apis.GetAllmoodtoy)
 		rmood.GET("", apis.GetMoodtoy)
+		//这个就是访问这个/static就是可以获取./moodtoy中的文件
+		rmood.Static("/static","./moodtoy")
+			
 	}
 	rdiary := baseRoute.Group("/diary",middleware.JWTAuthMiddleware())
 	{

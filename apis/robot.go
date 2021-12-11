@@ -7,7 +7,6 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/gin-gonic/gin"
 	"log"
-	"lwh.com/models"
 	"lwh.com/setting"
 	"net/http"
 )
@@ -33,9 +32,13 @@ type XXG struct {
 	MessageID string `json:"MessageId"`
 }
 
+type Txt struct {
+	Text string `json:"text"`
+}
 func GetXXG(c *gin.Context) {
-	var txt = models.Txt{}
+	var txt = Txt{}
 	var xxg = XXG{}
+	err := c.ShouldBind(&txt)
 	client, err := sdk.NewClientWithAccessKey("cn-shanghai", setting.Configone.XXG.AccessKeyID, setting.Configone.XXG.AccessKeySecret)
 	/* use STS Token
 	client, err := sdk.NewClientWithStsToken("cn-shanghai", "<your-access-key-id>", "<your-access-key-secret>", "<your-sts-token>")
