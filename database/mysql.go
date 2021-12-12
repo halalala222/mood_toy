@@ -24,7 +24,7 @@ var Db *gorm.DB
 //Link 定义一个映射一个结构体表格，然后链接数据库的函数
 func Link()  {
 	//链接数据库
-	mysqllink("user")
+	mysqllink("moodtoy")
 	//自动跟随结构体在数据库中建立和更新表格
 	err = Db.AutoMigrate(&models.User{})
 	err = Db.AutoMigrate(&models.ToyHair{})

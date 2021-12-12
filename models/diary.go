@@ -1,6 +1,8 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 var Diaries []Diary
 //Diary 一个用户轻日记的一个结构体

@@ -8,6 +8,7 @@ import (
 
 func Newrouter() *gin.Engine {
 	r := gin.Default()
+	r.Use(middleware.CORS())
 	baseRoute := r.Group("/api")
 	ruser := baseRoute.Group("/")
 	{

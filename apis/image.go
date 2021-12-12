@@ -37,7 +37,7 @@ func PostPicture(c *gin.Context)  {
 		})
 	}
 	//设置存储的路径
-	dst := fmt.Sprintf("D:/picture/%s", file.Filename)
+	dst := fmt.Sprintf("/picture/%s", file.Filename)
 	//保存文件到指定的目录
 	err = c.SaveUploadedFile(file,dst)
 	if err != nil{
@@ -60,6 +60,6 @@ func GetPicture(c *gin.Context)  {
 			"message" : err,
 		})
 	}
-	dst := fmt.Sprintf("D:/picture/%s",userimage.ImgUrl)
+	dst := fmt.Sprintf("/picture/%s",userimage.ImgUrl)
 	c.File(dst)
 }
