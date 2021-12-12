@@ -1,0 +1,147 @@
+如果有啥觉得要改的dd我
+==============================
+
+API
+=========================
+
+Models
+------------------------
+>interface User
+{
+
+        userid : string
+        username : string
+}
+
+
+>interface Moodtoy
+{
+
+        hair : unmber,
+        eyes : number,
+        eyebrow : number,
+        mouth : number,
+        clothes : number,   
+}
+>interface Diary {
+        
+        TextContext : text_context,
+        time : string,
+        feeling : string,
+}
+
+
+Errors
+----------------
+{
+    
+    message : string,
+}
+
+Resources
+---------------
+POST  /login
+{
+
+    userid : string,
+    password : string,
+}
+
+{
+
+    token : string,
+    user : User
+}
+
+POST  /register
+{
+
+    userid : string,
+    password : string,
+    username : string,
+
+}
+
+// empty response if success
+
+POST  /moodtoy
+
+{
+    
+    moodtoy : Moodtoy,
+}
+
+{
+
+    moodtoy : Moodtoy,
+}
+
+
+POST /diary
+{
+
+    diary : diary,
+} 
+
+{
+
+    diary : diary,
+    //或者是这样的？
+    "time" : time,
+    "text_content" : string[].
+}
+
+PUT /user
+{
+
+    user : User,
+}
+{
+
+    user : User,
+}
+
+DELETE /user
+
+{
+
+    userid : string,
+}
+
+
+GET /moodtoy/all
+
+{
+
+}
+
+{
+
+    hairs : hairs{}
+    ... : ....
+}
+
+
+GET /moodtoy
+
+{
+   
+}
+
+{
+
+    moodtoy : moodtoy,
+}
+GET /diary/all
+
+{
+
+}
+
+{
+
+    diary : diary[]
+    //或者说
+    "time" : time,
+    "text_content" : string[]
+}
